@@ -11,14 +11,8 @@ public static class MathFunctions
     /// <returns>Even numbers until given number excluding 0.</returns>
     public static List<int> GetEvenNumbers(int until)
     {
-        List<int> result = new();
-        for (int i = 2; i < until; i++)
-        {
-            if (i%2==0)
-            {
-                result.Add(i);
-            }
-        }
+        int start = 2;
+        List<int> result = Enumerable.Range(start, until - start).Where(x => x %2 == 0).ToList();
         return result;
     }
     
