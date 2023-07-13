@@ -1,4 +1,4 @@
-﻿
+﻿using System.Diagnostics;
 
 namespace MathAndFun;
 
@@ -11,7 +11,15 @@ public static class MathFunctions
     /// <returns>Even numbers until given number excluding 0.</returns>
     public static List<int> GetEvenNumbers(int until)
     {
-        return new();
+        List<int> result = new();
+        for (int i = 2; i < until; i++)
+        {
+            if (i%2==0)
+            {
+                result.Add(i);
+            }
+        }
+        return result;
     }
     
     /// <summary>
