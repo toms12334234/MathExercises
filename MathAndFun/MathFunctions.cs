@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace MathAndFun;
+﻿namespace MathAndFun;
 
 public static class MathFunctions
 {
