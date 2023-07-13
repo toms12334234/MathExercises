@@ -11,7 +11,7 @@ public static class MathFunctions
     /// <returns>Even numbers until given number excluding 0.</returns>
     public static List<int> GetEvenNumbers(int until)
     {
-        return null;
+        return new();
     }
     
     /// <summary>
@@ -21,7 +21,7 @@ public static class MathFunctions
     /// <returns>The amount of prime numbers that are asked.</returns>
     public static IEnumerable<int> GetPrimeNumbers(int amount)
     {
-        return null;
+        return new List<int>();
     }
 
 
