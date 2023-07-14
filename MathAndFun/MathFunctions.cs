@@ -1,5 +1,8 @@
 ﻿
 
+using System.Security.Cryptography.X509Certificates;
+using FluentValidation.Results;
+
 namespace MathAndFun;
 
 public static class MathFunctions
@@ -13,7 +16,7 @@ public static class MathFunctions
     {
         return new();
     }
-    
+
     /// <summary>
     /// Calculates all prime numbers (low to high) until the collection has reached the given amount.
     /// </summary>
@@ -32,7 +35,17 @@ public static class MathFunctions
     /// <returns>true if valid</returns>
     public static bool ValidateSudoku(string[] lines)
     {
-        return true;
-    }
+        SudokuSolution solution = new SudokuSolution(lines);
 
+        SudokuSolutionValidator validator = new();
+
+        // Execute the validator
+        ValidationResult results = validator.Validate(solution);
+
+        if (!results.IsValid)
+        {
+
+        }
+        return results.IsValid;
+    }
 }
