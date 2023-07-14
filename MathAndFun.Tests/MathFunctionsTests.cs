@@ -118,6 +118,8 @@ namespace MathAndFun.Tests
             Assert.Equal(realPrimeNumber, primeNumbers);
         }
         
+        // Lasted for 242619 ms before
+        // Now ~60000 ms
         [Fact]
         public void GetPrimeNumbers_Returns_PrimeNumbersFast()
         {
