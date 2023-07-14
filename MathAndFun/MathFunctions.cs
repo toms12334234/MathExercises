@@ -13,7 +13,7 @@ public static class MathFunctions
     {
         return new();
     }
-    
+
     /// <summary>
     /// Calculates all prime numbers (low to high) until the collection has reached the given amount.
     /// </summary>
@@ -21,7 +21,32 @@ public static class MathFunctions
     /// <returns>The amount of prime numbers that are asked.</returns>
     public static IEnumerable<int> GetPrimeNumbers(int amount)
     {
-        return new List<int>();
+        var result = new List<int>();
+
+        for (int integerUnderTest = 2; result.Count < amount; integerUnderTest++)
+        {
+            if (ADenominatorExists(integerUnderTest))
+            {
+                continue;
+            }
+            result.Add(integerUnderTest);
+        }
+
+        return result;
+    }
+
+    private static bool ADenominatorExists(int integerUnderTest)
+    {
+        for (int i = 2; i < integerUnderTest; i++)
+        {
+            double division = (double)integerUnderTest/i;
+            double modulo = division % 1;
+            if (modulo == 0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 
