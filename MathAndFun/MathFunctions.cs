@@ -1,3 +1,5 @@
+using FluentValidation.Results;
+
 ﻿namespace MathAndFun;
 
 public static class MathFunctions
@@ -36,9 +38,19 @@ public static class MathFunctions
     /// <returns>true if valid</returns>
     public static bool ValidateSudoku(string[] lines)
     {
-        return true;
-    }
+        SudokuSolution solution = new SudokuSolution(lines);
 
+        SudokuSolutionValidator validator = new();
+
+        // Execute the validator
+        ValidationResult results = validator.Validate(solution);
+
+        if (!results.IsValid)
+        {
+
+        }
+        return results.IsValid;
+    }
 }
 
 internal class PrimeNumberGeneratorWithChatGpt
