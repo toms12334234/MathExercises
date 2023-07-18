@@ -1,6 +1,4 @@
-﻿
-
-namespace MathAndFun;
+﻿namespace MathAndFun;
 
 public static class MathFunctions
 {
@@ -11,7 +9,14 @@ public static class MathFunctions
     /// <returns>Even numbers until given number excluding 0.</returns>
     public static List<int> GetEvenNumbers(int until)
     {
-        return new();
+        if (until <= 1)
+        {
+            return new();
+        }
+        
+        int start = 2;
+        List<int> result = Enumerable.Range(start, until - start).Where(x => x %2 == 0).ToList();
+        return result;
     }
     
     /// <summary>
