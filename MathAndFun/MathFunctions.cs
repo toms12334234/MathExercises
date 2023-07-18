@@ -28,7 +28,7 @@ public static class MathFunctions
     /// <returns>The amount of prime numbers that are asked.</returns>
     public static IEnumerable<int> GetPrimeNumbers(int amount)
     {
-        return PrimeNumberGeneratorWithChatGpt.GetPrimeNumbersWithSieveOfEratosthenes(amount);
+        return PrimeNumberGenerator.GetPrimeNumbersWithSieveOfEratosthenes(amount);
     }
 
     /// <summary>
@@ -50,36 +50,5 @@ public static class MathFunctions
 
         }
         return results.IsValid;
-    }
-}
-
-internal class PrimeNumberGeneratorWithChatGpt
-{
-    internal static IEnumerable<int> GetPrimeNumbersWithSieveOfEratosthenes(int amount)
-    {
-        List<int> primes = new();
-        int n = 2;
-        while (primes.Count < amount)
-        {
-            bool isPrime = true;
-            foreach (int prime in primes)
-            {
-                if (n % prime == 0)
-                {
-                    isPrime = false;
-                    break;
-                }
-                if (prime * prime > n)
-                {
-                    break;
-                }
-            }
-            if (isPrime)
-            {
-                primes.Add(n);
-            }
-            n++;
-        }
-        return primes;
     }
 }
