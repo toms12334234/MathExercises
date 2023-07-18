@@ -131,7 +131,6 @@ namespace MathAndFun.Tests
             
             _testOutputHelper.WriteLine(sw.ElapsedMilliseconds.ToString());
             Assert.True(sw.ElapsedMilliseconds < 7000);
-            Assert.True(false);
             Assert.Equal(50000, primeNumbers.Count());
         }
         
