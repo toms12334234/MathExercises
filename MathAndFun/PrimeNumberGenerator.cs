@@ -2,6 +2,34 @@ namespace MathAndFun
 {
     public class PrimeNumberGenerator
     {
+        internal static IEnumerable<int> GetPrimeNumbersWithSieveOfEratosthenes(int amount)
+        {
+            List<int> primes = new();
+            int n = 2;
+            while (primes.Count < amount)
+            {
+                bool isPrime = true;
+                foreach (int prime in primes)
+                {
+                    if (n % prime == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
+                    if (prime * prime > n)
+                    {
+                        break;
+                    }
+                }
+                if (isPrime)
+                {
+                    primes.Add(n);
+                }
+                n++;
+            }
+            return primes;
+        }
+
         public IEnumerable<int> GetPrimeNumbers(int amount)
         {
             for (int integerUnderTest = 3; PrimeNumbersFoundSoFar.Count < amount; integerUnderTest += 2)
