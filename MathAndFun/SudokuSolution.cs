@@ -6,12 +6,12 @@ internal class SudokuSolution
     internal SudokuSolution(string[] lines)
     {
         int[,] result = new int[9, 9];
-        for (int i = 0; i < 9; i++)
+        for (int y = 0; y < 9; y++)
         {
-            var line = lines[i].Split(' ');
-            for (int j = 0; j < 9; j++)
+            var line = lines[y].Split(' ');
+            for (int x = 0; x < 9; x++)
             {
-                result[i, j] = int.Parse(line[j]);
+                result[x, y] = int.Parse(line[x]);
             }
         }
         SolutionArray = result;
@@ -42,7 +42,7 @@ internal class SudokuSolution
                 var column = new List<int>();
                 for (int y = 0; y < 9; y++)
                 {
-                    column.Add(SolutionArray[y, x]);
+                    column.Add(SolutionArray[x, y]);
                 }
                 yield return column;
             }
@@ -55,9 +55,9 @@ internal class SudokuSolution
         {
             for (int y = 0; y < 9; y += 3)
             {
-                var block = new List<int>();
                 for (int x = 0; x < 9; x += 3)
                 {
+                    var block = new List<int>();
                     block.Add(SolutionArray[x + 0, y + 0]);
                     block.Add(SolutionArray[x + 1, y + 0]);
                     block.Add(SolutionArray[x + 2, y + 0]);
@@ -69,8 +69,8 @@ internal class SudokuSolution
                     block.Add(SolutionArray[x + 0, y + 2]);
                     block.Add(SolutionArray[x + 1, y + 2]);
                     block.Add(SolutionArray[x + 2, y + 2]);
+                    yield return block;
                 }
-                yield return block;
             }
         }
     }
