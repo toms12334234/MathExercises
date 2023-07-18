@@ -120,6 +120,7 @@ namespace MathAndFun.Tests
         
         // Lasted for 242619 ms before
         // Now ~60000 ms
+        // With the Sieve of Eratosthenes: 77ms (thanks to ChatGpt: https://chat.openai.com/share/0060a870-4140-4076-9883-e883db22069b)
         [Fact]
         public void GetPrimeNumbers_Returns_PrimeNumbersFast()
         {
@@ -130,6 +131,7 @@ namespace MathAndFun.Tests
             
             _testOutputHelper.WriteLine(sw.ElapsedMilliseconds.ToString());
             Assert.True(sw.ElapsedMilliseconds < 7000);
+            Assert.True(false);
             Assert.Equal(50000, primeNumbers.Count());
         }
         
