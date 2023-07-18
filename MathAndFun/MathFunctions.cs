@@ -18,7 +18,7 @@ public static class MathFunctions
         List<int> result = Enumerable.Range(start, until - start).Where(x => x %2 == 0).ToList();
         return result;
     }
-    
+
     /// <summary>
     /// Calculates all prime numbers (low to high) until the collection has reached the given amount.
     /// </summary>
@@ -26,9 +26,8 @@ public static class MathFunctions
     /// <returns>The amount of prime numbers that are asked.</returns>
     public static IEnumerable<int> GetPrimeNumbers(int amount)
     {
-        return new List<int>();
+        return PrimeNumberGeneratorWithChatGpt.GetPrimeNumbersWithSieveOfEratosthenes(amount);
     }
-
 
     /// <summary>
     /// Calculates if the given sudoku result is correct.
@@ -40,4 +39,35 @@ public static class MathFunctions
         return true;
     }
 
+}
+
+internal class PrimeNumberGeneratorWithChatGpt
+{
+    internal static IEnumerable<int> GetPrimeNumbersWithSieveOfEratosthenes(int amount)
+    {
+        List<int> primes = new();
+        int n = 2;
+        while (primes.Count < amount)
+        {
+            bool isPrime = true;
+            foreach (int prime in primes)
+            {
+                if (n % prime == 0)
+                {
+                    isPrime = false;
+                    break;
+                }
+                if (prime * prime > n)
+                {
+                    break;
+                }
+            }
+            if (isPrime)
+            {
+                primes.Add(n);
+            }
+            n++;
+        }
+        return primes;
+    }
 }
