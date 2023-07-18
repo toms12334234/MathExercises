@@ -1,9 +1,6 @@
-﻿
-
-using System.Security.Cryptography.X509Certificates;
 using FluentValidation.Results;
 
-namespace MathAndFun;
+﻿namespace MathAndFun;
 
 public static class MathFunctions
 {
@@ -14,7 +11,14 @@ public static class MathFunctions
     /// <returns>Even numbers until given number excluding 0.</returns>
     public static List<int> GetEvenNumbers(int until)
     {
-        return new();
+        if (until <= 1)
+        {
+            return new();
+        }
+        
+        int start = 2;
+        List<int> result = Enumerable.Range(start, until - start).Where(x => x %2 == 0).ToList();
+        return result;
     }
 
     /// <summary>
@@ -24,9 +28,8 @@ public static class MathFunctions
     /// <returns>The amount of prime numbers that are asked.</returns>
     public static IEnumerable<int> GetPrimeNumbers(int amount)
     {
-        return new List<int>();
+        return PrimeNumberGeneratorWithChatGpt.GetPrimeNumbersWithSieveOfEratosthenes(amount);
     }
-
 
     /// <summary>
     /// Calculates if the given sudoku result is correct.
@@ -47,5 +50,36 @@ public static class MathFunctions
 
         }
         return results.IsValid;
+    }
+}
+
+internal class PrimeNumberGeneratorWithChatGpt
+{
+    internal static IEnumerable<int> GetPrimeNumbersWithSieveOfEratosthenes(int amount)
+    {
+        List<int> primes = new();
+        int n = 2;
+        while (primes.Count < amount)
+        {
+            bool isPrime = true;
+            foreach (int prime in primes)
+            {
+                if (n % prime == 0)
+                {
+                    isPrime = false;
+                    break;
+                }
+                if (prime * prime > n)
+                {
+                    break;
+                }
+            }
+            if (isPrime)
+            {
+                primes.Add(n);
+            }
+            n++;
+        }
+        return primes;
     }
 }
