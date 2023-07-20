@@ -28,7 +28,9 @@ public static class MathFunctions
     /// <returns>The amount of prime numbers that are asked.</returns>
     public static IEnumerable<int> GetPrimeNumbers(int amount)
     {
-        return PrimeNumberGenerator.GetPrimeNumbersWithSieveOfEratosthenes(amount);
+        // return PrimeNumberGenerator.GetPrimeNumbersWithSieveOfEratosthenes(amount);
+        // return new PrimeNumberGenerator().GetPrimeNumbers(amount);
+        return PrimeNumberGenerator.SieveOfEratosthenes(611953);
     }
 
     /// <summary>

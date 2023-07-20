@@ -30,6 +30,38 @@ namespace MathAndFun
             return primes;
         }
 
+        public static List<int> SieveOfEratosthenes(int n)
+        {
+            List<int> primes = new List<int>();
+            bool[] isPrime = new bool[n + 1];
+
+            for (int i = 2; i <= n; i++)
+            {
+                isPrime[i] = true;
+            }
+
+            for (int i = 2; i * i <= n; i++)
+            {
+                if (isPrime[i])
+                {
+                    for (int j = i * i; j <= n; j += i)
+                    {
+                        isPrime[j] = false;
+                    }
+                }
+            }
+
+            for (int i = 2; i <= n; i++)
+            {
+                if (isPrime[i])
+                {
+                    primes.Add(i);
+                }
+            }
+
+            return primes;
+        }
+
         public IEnumerable<int> GetPrimeNumbers(int amount)
         {
             for (int integerUnderTest = 3; PrimeNumbersFoundSoFar.Count < amount; integerUnderTest += 2)
